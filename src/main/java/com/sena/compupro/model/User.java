@@ -7,6 +7,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name= "users")
@@ -17,6 +19,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @Setter @Column(name = "userID")
     private Long userID;
+
+//    @ManyToMany
+//    @JoinTable(name = "users_tipe",
+//    joinColumns = @JoinColumn(name="userID"),
+//    inverseJoinColumns = @JoinColumn(name="role_id"))
+//    private Set<Rol> roles;
 
     @Getter @Setter @Column(name = "user_name")
     private String user_name;
@@ -36,6 +44,15 @@ public class User {
     @Getter @Setter @Column(name = "client_phone")
     private String client_phone;
 
+
+    @Getter @Setter
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
+
+
+    @OneToMany(mappedBy = "user")
+    @Getter @Setter
+    private List<Product> products;
 
 //    public Long getUserID() {
 //        return userID;

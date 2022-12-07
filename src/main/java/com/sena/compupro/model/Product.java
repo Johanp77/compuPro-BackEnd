@@ -7,16 +7,18 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name= "products")
 @ToString @EqualsAndHashCode
+//@Embeddable
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter @Column(name = "idProduct")
-    private Long productID;
+    @Getter @Setter @Column(name = "id_product")
+    private String product_id;
 
     @Getter @Setter @Column(name = "name_product")
     private String name_product;
@@ -35,6 +37,15 @@ public class Product {
 
     @Getter @Setter @Column(name = "image_product3")
     private String image_product3;
+
+    @Getter @Setter
+    @ManyToOne
+    private Product product;
+
+
+    @Getter @Setter
+    @ManyToOne
+    private User user;
 
 
 }
