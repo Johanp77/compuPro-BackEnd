@@ -8,20 +8,20 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-//@Entity
+@Entity
 //@Table()
 @ToString @EqualsAndHashCode
 
 public class DetailOrder {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Getter @Setter @Column()
-//    private String detail_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter @Setter @Column()
+    private String detail_id;
 
-    @Getter @Setter
-    @OneToOne
-    private Order order;
+//    @Getter @Setter
+//    @OneToOne
+//    private Order order;
 
     @Getter @Setter
     @OneToOne

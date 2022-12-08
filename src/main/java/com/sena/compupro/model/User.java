@@ -17,7 +17,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter @Column(name = "userID")
+    @Getter @Setter @Column(name = "user_id")
     private Long userID;
 
 //    @ManyToMany
@@ -45,68 +45,16 @@ public class User {
     private String client_phone;
 
 
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "userCart")
     @Getter @Setter
-    @OneToMany(mappedBy = "user")
-    private List<Order> orders;
+    public List<Cart> userCart;
+//    @Getter @Setter
+//    @OneToMany(mappedBy = "user")
+//    private List<Order> orders;
 
 
-    @OneToMany(mappedBy = "user")
-    @Getter @Setter
-    private List<Product> products;
+//    @OneToMany(mappedBy = "user")
+//    @Getter @Setter
+//    private List<Product> products;
 
-//    public Long getUserID() {
-//        return userID;
-//    }
-//
-//    public void setUserID(Long userID) {
-//        this.userID = userID;
-//    }
-//
-//    public String getUser_name() {
-//        return user_name;
-//    }
-//
-//    public void setUser_name(String user_name) {
-//        this.user_name = user_name;
-//    }
-//
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-//
-//    public String getPassword() {
-//        return password;
-//    }
-//
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
-//
-//    public String getCreate_time() {
-//        return create_time;
-//    }
-//
-//    public void setCreate_time(String create_time) {
-//        this.create_time = create_time;
-//    }
-//
-//    public String getClientAdress() {
-//        return clientAdress;
-//    }
-//
-//    public void setClientAdress(String clientAdress) {
-//        this.clientAdress = clientAdress;
-//    }
-//
-//    public String getClientPhone() {
-//        return clientPhone;
-//    }
-//
-//    public void setClientPhone(String clientPhone) {
-//        this.clientPhone = clientPhone;
-//    }
 }

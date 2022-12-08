@@ -19,16 +19,19 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @Setter @Column(name = "idshopping_cart")
-    private Long cartID;
+    private String cartID;
 
 
 //    private User user;
 
-
-
+    @ManyToOne
     @Getter @Setter
-    @OneToMany(mappedBy = "product")
-    private List<Product> products;
+    @JoinColumn(name = "user_id")
+    private User userCart;
+
+//    @Getter @Setter
+//    @OneToMany(mappedBy = "cart")
+//    private List<Product> products;
 
 
 //    @Id

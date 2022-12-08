@@ -8,12 +8,14 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name= "orders")
+//@Entity
+//@Table(name= "orders")
 @ToString
 @EqualsAndHashCode
+
 public class Order {
 
+    /*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @Setter @Column(name= "order_id" )
@@ -22,9 +24,13 @@ public class Order {
     @Getter @Setter @Column(name= "order_status")
     private String status;
 
+    @Getter @Setter @Column(name= "final_price_order")
+    private String final_price;
+
     @Getter @Setter
     @ManyToOne
     private User user;
+    */
 
 //    @Getter @Setter
 //    @OneToOne(mappedBy = "order")
