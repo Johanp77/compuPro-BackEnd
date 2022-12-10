@@ -7,4 +7,9 @@ import java.util.List;
 public interface ProductDao {
 
     List<Product> getProducts();
+
+//    List<Product> getProductByType(String type_product);
+    List<Product> getProductById(Product product);
+
+
 }

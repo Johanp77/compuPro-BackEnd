@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000" )
+//@CrossOrigin(origins = "http://192.168.1.142:3000")
+@CrossOrigin(origins = {"http://192.168.1.142:3000", "http://localhost:3000"})
 public class userController {
 
     @Autowired
@@ -43,6 +45,8 @@ public class userController {
         String hash = argon2.hash(1, 1024, 1, user.getPassword());
         user.setPassword(hash);
 
+        //Build a conditional that returns something in case of success/fail
+
         userDao.register(user);
     }
 
@@ -56,11 +60,25 @@ public class userController {
 
     }
 
-    private boolean verifyToken(String token){
+
+
+    public boolean verifyToken(String token){
         String userTokenID = jwtUtil.getKey(token);
+        if(token == null){
+            return false;
+        }
             return userTokenID != null;
     }
 
+    @RequestMapping(value= "api/verification", method = RequestMethod.GET)
+    public boolean verifyUserStatus(@RequestHeader(value = "Authorization") String token){
+        if(verifyToken(token)){
+            return true;
+        }else if (verifyToken(null)){
+            return false;
+        }
+        return false;
+    }
 
     @RequestMapping(value = "api/users/{userID}", method = RequestMethod.DELETE)
     public void delete(@RequestHeader(value="Authorization") String token, @PathVariable Long userID){

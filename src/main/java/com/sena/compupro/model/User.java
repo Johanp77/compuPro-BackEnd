@@ -7,6 +7,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name= "users")
@@ -15,8 +17,14 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter @Column(name = "userID")
+    @Getter @Setter @Column(name = "user_id")
     private Long userID;
+
+//    @ManyToMany
+//    @JoinTable(name = "users_tipe",
+//    joinColumns = @JoinColumn(name="userID"),
+//    inverseJoinColumns = @JoinColumn(name="role_id"))
+//    private Set<Rol> roles;
 
     @Getter @Setter @Column(name = "user_name")
     private String user_name;
@@ -37,59 +45,21 @@ public class User {
     private String client_phone;
 
 
-//    public Long getUserID() {
-//        return userID;
-//    }
-//
-//    public void setUserID(Long userID) {
-//        this.userID = userID;
-//    }
-//
-//    public String getUser_name() {
-//        return user_name;
-//    }
-//
-//    public void setUser_name(String user_name) {
-//        this.user_name = user_name;
-//    }
-//
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-//
-//    public String getPassword() {
-//        return password;
-//    }
-//
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
-//
-//    public String getCreate_time() {
-//        return create_time;
-//    }
-//
-//    public void setCreate_time(String create_time) {
-//        this.create_time = create_time;
-//    }
-//
-//    public String getClientAdress() {
-//        return clientAdress;
-//    }
-//
-//    public void setClientAdress(String clientAdress) {
-//        this.clientAdress = clientAdress;
-//    }
-//
-//    public String getClientPhone() {
-//        return clientPhone;
-//    }
-//
-//    public void setClientPhone(String clientPhone) {
-//        this.clientPhone = clientPhone;
-//    }
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "userCart")
+    @Getter @Setter
+    public List<Cart> userCart;
+
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "clientID")
+//    @JoinColumn(name = "id_client")
+    @Getter @Setter
+    public List<PQR> clientID;
+//    @Getter @Setter
+//    @OneToMany(mappedBy = "user")
+//    private List<Order> orders;
+
+
+//    @OneToMany(mappedBy = "user")
+//    @Getter @Setter
+//    private List<Product> products;
+
 }

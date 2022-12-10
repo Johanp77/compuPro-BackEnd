@@ -13,6 +13,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
 import java.util.Date;
+import java.util.Objects;
 
 
 /**
@@ -86,12 +87,21 @@ public class JWTUtil {
      * @param jwt
      * @return
      */
-    public String getKey(String jwt) {
+    public String getKey(String jwt)  {
         // This line will throw an exception if it is not a signed JWS (as
         // expected)
-        Claims claims = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(key))
-                .parseClaimsJws(jwt).getBody();
 
-        return claims.getId();
+        if (!Objects.equals(jwt, "null")) {
+
+            Claims claims = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(key))
+                    .parseClaimsJws(jwt).getBody();
+
+            return claims.getId();
+
+        } else {
+            return null;
+
+        }
+
     }
 }
