@@ -29,6 +29,14 @@ public class Cart {
     @JoinColumn(name = "user_id")
     private User userCart;
 
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @Getter @Setter
+    private Product product;
+
+    @Getter @Setter @Column(name = "product_quantity")
+    private String amount;
+
+
 //    @Getter @Setter
 //    @OneToMany(mappedBy = "cart")
 //    private List<Product> products;

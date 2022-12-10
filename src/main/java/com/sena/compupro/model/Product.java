@@ -23,6 +23,9 @@ public class Product {
     @Getter @Setter @Column(name = "name_product")
     private String name_product;
 
+    @Getter @Setter @Column(name = "type_product")
+    private String type_product;
+
     @Getter @Setter @Column(name = "price_product")
     private String price_product;
 
@@ -37,6 +40,8 @@ public class Product {
 
     @Getter @Setter @Column(name = "image_product3")
     private String image_product3;
+
+
 
 
 

@@ -48,6 +48,11 @@ public class User {
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "userCart")
     @Getter @Setter
     public List<Cart> userCart;
+
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "clientID")
+//    @JoinColumn(name = "id_client")
+    @Getter @Setter
+    public List<PQR> clientID;
 //    @Getter @Setter
 //    @OneToMany(mappedBy = "user")
 //    private List<Order> orders;

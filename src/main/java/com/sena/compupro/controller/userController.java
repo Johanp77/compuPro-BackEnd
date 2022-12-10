@@ -62,7 +62,7 @@ public class userController {
 
 
 
-    private boolean verifyToken(String token){
+    public boolean verifyToken(String token){
         String userTokenID = jwtUtil.getKey(token);
         if(token == null){
             return false;
